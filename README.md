@@ -100,6 +100,3 @@ Use this tool only on websites you own or have explicit permission to assess. Do
 - Integrate additional passive security checks.
 - Add automated unit tests.
 
-Disclaimer
-
-This is an educational cybersecurity project. Its findings are preliminary and should not replace a professional security assessment.

@@ -1,102 +1,99 @@
-# AutoWebScannerAutomated Web Security Scanner
+Automated Web Scanner
 
-Author: Dhanika
-Domain: Cybersecurity
-Language: Python
+Author: Dhanika S
 
-1. Project Overview
+Project Description
 
-The Automated Web Security Scanner is a Python-based tool that checks a website's HTTP security headers and identifies potentially permissive Cross-Origin Resource Sharing (CORS) configurations.
+Automated Web Scanner is a Python-based tool that checks selected HTTP security headers and examines selected Cross-Origin Resource Sharing (CORS) response headers.
 
-The tool generates a simple terminal report showing security headers that are present or missing and provides basic recommendations for further review.
+The program calculates a security-header score out of 100, lists detected and missing headers, provides recommendations, and displays CORS analysis in the terminal.
 
-2. Objectives
+Features
 
-- Automate the checking of common HTTP security headers.
-- Identify missing security-related response headers.
-- Highlight potentially permissive CORS configurations.
-- Generate a readable security assessment report.
-- Demonstrate basic Python scripting and web security concepts.
+- Checks six recommended HTTP security headers.
+- Calculates a weighted security-header score out of 100.
+- Lists detected security headers and their values.
+- Identifies missing headers and provides recommendations.
+- Examines "Access-Control-Allow-Origin".
+- Examines "Access-Control-Allow-Credentials".
+- Displays the HTTP response status and final redirect URL.
+- Handles HTTP request exceptions.
 
-3. Technologies Used
+Technologies Used
 
 - Python 3
-- Requests library
-- HTTP/HTTPS
-- HTTP security headers
-- Cross-Origin Resource Sharing (CORS)
-- Git and GitHub
+- Requests
+- urllib3
+- Visual Studio Code
 
-4. Security Checks
+Project Files
 
-The scanner checks the following headers:
+- "Dhanika_AutomatedWebScanner.py" — Main scanner program.
+- "requirements.txt" — Required Python packages.
+- "Dhanika_ProjectReport.docx" — Project report.
+- "README.md" — Project documentation.
 
-- Content-Security-Policy
-- Strict-Transport-Security
-- X-Content-Type-Options
-- X-Frame-Options
-- Referrer-Policy
-- Permissions-Policy
+Installation
 
-It also reviews the "Access-Control-Allow-Origin" and "Access-Control-Allow-Credentials" response headers.
+Install Python 3 and open a terminal in the project folder.
 
-5. Installation
-
-Install Python 3 on your computer.
-
-Clone the repository:
-
-git clone YOUR_GITHUB_REPOSITORY_URL
-
-Open the project folder:
-
-cd YOUR_REPOSITORY_NAME
-
-Install the required dependency:
+Install the required dependencies:
 
 pip install -r requirements.txt
 
-6. Execution
+How to Run
 
-Run the scanner:
+Run the scanner with a target URL:
 
-python Dhanika_AutomatedWebScanner.py
+python Dhanika_AutomatedWebScanner.py https://example.com
 
-Enter the URL of a website you own or have permission to assess when prompted.
+If no URL is provided, the program uses "https://example.com" by default.
 
-Example:
+Replace the example URL with a website you own or are explicitly authorized to test.
 
-Enter an authorized website URL: https://example.com
+Security Headers Checked
 
-7. Expected Output
+Header| Purpose| Weight
+Strict-Transport-Security| Helps enforce HTTPS| 20
+Content-Security-Policy| Restricts permitted content sources| 25
+X-Frame-Options| Helps prevent clickjacking| 15
+X-Content-Type-Options| Helps prevent MIME-type sniffing| 15
+Referrer-Policy| Controls referrer information| 10
+Permissions-Policy| Restricts selected browser features| 15
 
-The scanner displays:
+The score is calculated by adding the weights of the headers found in the response.
 
-- HTTP response status
-- Whether HTTPS is used
-- Security headers present
-- Security headers missing
-- Basic CORS configuration observations
-- A scan summary
+CORS Analysis
 
-Results depend on the target website's actual HTTP response.
+The program sends a test Origin header:
 
-8. Limitations
+"https://evil-attacker.com"
 
-- The scanner checks response headers rather than performing a complete penetration test.
-- A missing header does not necessarily mean that a website is vulnerable.
-- The tool does not test every possible CORS exploit or application security flaw.
-- Findings require manual verification and security context.
+It examines the response's "Access-Control-Allow-Origin" and "Access-Control-Allow-Credentials" headers.
 
-9. Ethical Use
+The scanner reports selected configurations for further investigation. Its CORS results are preliminary indicators and do not independently prove a vulnerability.
 
-Use this tool only on websites you own or have explicit permission to assess. Do not use it to disrupt services or access unauthorized systems.
+Dataset
 
-10. Future Enhancements
+No separate dataset is required. The program analyzes HTTP response headers retrieved from the specified website.
 
-- Export reports to JSON or CSV.
-- Add severity classifications.
-- Support batch scanning of authorized targets.
-- Integrate additional passive security checks.
-- Add automated unit tests.
+Limitations
 
+- Checks only predefined security headers.
+- Does not perform a complete vulnerability assessment.
+- Does not independently confirm data exposure through CORS.
+- Uses a basic scoring system based on header presence.
+- Disables HTTPS certificate verification in the current implementation.
+
+Ethical Use
+
+Use this scanner only on websites you own or have explicit permission to assess. Follow applicable laws and the website owner's policies.
+
+Future Enhancements
+
+- Improve CORS validation.
+- Enable HTTPS certificate verification.
+- Export scan results to JSON or HTML reports.
+- Add additional security checks.
+- Develop a graphical user interface.
+- Improve error handling and security scoring.
